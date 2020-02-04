@@ -1,4 +1,4 @@
-from mip import Model, xsum, BINARY
+from mip import Model, xsum, BINARY, minimize
 
 from basics import *
 from random import *
@@ -12,6 +12,7 @@ def possible(n, history):
         model += xsum(assign[i][j] for j in range(n)) == 1
     for (tab, sc) in history:
         model += xsum(assign[i][tab[i]] for i in range(n)) == sc
+    model.objective = minimize(xsum((random() - 0.5) * assign[i // n][i % n] for i in range(n*n)))
     model.optimize()
     tab = [max([(assign[i][j].x, j) for j in range(n)])[1] for i in range(n)]
     return tab
