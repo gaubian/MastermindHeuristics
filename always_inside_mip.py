@@ -6,6 +6,7 @@ from math import *
 
 def possible(n, history):
     model = Model()
+    model.verbose = 0
     assign = [[model.add_var(var_type=BINARY) for j in range(n)] for i in range(n)]
     for i in range(n):
         model += xsum(assign[i][j] for j in range(n)) == 1
