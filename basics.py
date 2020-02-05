@@ -10,11 +10,11 @@ def dist(A, B):
             ans += 1
     return ans
 
-def random_mastermind(n):
-    return [randint(0, n-1) for _ in range(n)]
+def random_mastermind(c, n):
+    return [randint(0, c-1) for _ in range(n)]
 
-def random_color(n):
-    return randint(0, n-1)
+def random_color(c):
+    return randint(0, c-1)
 
 def crossover(n, A, B):
     C = []
@@ -25,15 +25,15 @@ def crossover(n, A, B):
             C.append(B[i])
     return C
 
-def mutate(n, tab):
+def mutate(c, n, tab):
     new_tab = tab.copy()
     for i in range(n):
         if randint(0, n-1) == 0:
-            new_tab[i] = random_color(n)
+            new_tab[i] = random_color(c)
     return new_tab
 
-def perturb_one_randomly(n, tab):
+def perturb_one_randomly(c, n, tab):
     new_tab = tab.copy()
     i = randint(0,n-1)
-    new_tab[i] = random_color(n)
+    new_tab[i] = random_color(c)
     return new_tab

@@ -25,8 +25,8 @@ def f(n, dyn, inp, all_poss):
     dyn[inp] = best_move
     return best_move
 
-def generate_all_poss(n):
-    l = [list(range(n)) for i in range(n)]
+def generate_all_poss(c, n):
+    l = [list(range(c)) for i in range(n)]
     return list(map(tuple, list(itertools.product(*l))))
 
 def extract(x, sc, list_poss):
@@ -36,8 +36,8 @@ def extract(x, sc, list_poss):
             ans.append(y)
     return tuple(ans)
 
-def heuristic(n, score):
-    all_poss = generate_all_poss(n)
+def heuristic(c, n, score):
+    all_poss = generate_all_poss(c, n)
     inp = tuple(all_poss)
     dyn = dict()
     while True:

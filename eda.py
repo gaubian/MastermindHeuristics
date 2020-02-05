@@ -7,8 +7,8 @@ def index_biased(tab, n):
 def generate_biased(P, n):
     return [index_biased(P[i], n) for i in range(n)]
 
-def heuristic(n, score):
-    P = [[1/n for _ in range(n)] for _ in range(n)]
+def heuristic(c, n, score):
+    P = [[1/c for _ in range(c)] for _ in range(n)]
     while True:
         x = generate_biased(P, n)
         y = generate_biased(P, n)
