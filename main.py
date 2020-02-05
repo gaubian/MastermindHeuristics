@@ -13,7 +13,7 @@ import eda
 import time
 import matplotlib.pyplot as plt
 
-def testheuristic(MAX_TIME_SECOND, MAX_PER_ITERATION, c, heuristic, args = None):
+def testheuristic(MAX_TIME_SECOND, MAX_PER_ITERATION, c_func, heuristic, args = None):
     i = 1
     ans = []
     while i <= 50:
@@ -24,19 +24,19 @@ def testheuristic(MAX_TIME_SECOND, MAX_PER_ITERATION, c, heuristic, args = None)
         cnt = 0
         while time.time() < MAX_TIME_SECOND + time_beginning and cnt < MAX_PER_ITERATION:
             cnt += 1
-            x = tester.tester(c, i, heuristic, args = args)
+            x = tester.tester(c_func(i), i, heuristic, args = args)
             cur.append(x)
         ans.append((i, cur))
         if time.time() - time_beginning > 2 * MAX_TIME_SECOND:
             break
     return ans
 
-def plot_heuristics(c, heuristics):
+def plot_heuristics(c_func, heuristics):
     fig, ax = plt.subplots()
     for (heur, col, MAX_TIME_SECOND, MAX_PER_ITERATION, args, name) in heuristics:
         x = []
         y = []
-        tab = testheuristic(MAX_TIME_SECOND, MAX_PER_ITERATION, c, heur, args)
+        tab = testheuristic(MAX_TIME_SECOND, MAX_PER_ITERATION, c_func, heur, args)
         for (i, ys) in tab:
             x = x + (len(ys) * [i])
             y = y + ys
@@ -58,7 +58,7 @@ def main_plot():
     heuristics.append((mu_lambda_ga.heuristic, 'orange', 1, 1, [2, 2, 0.5], 'mu+lambda ga'))
     heuristics.append((eda.heuristic, 'gray', 1, 1, None, 'EDA'))
 
-    plot_heuristics(2, heuristics)
+    plot_heuristics(lambda sz : 2, heuristics)
     plt.savefig("test.png")
 
 def main():
