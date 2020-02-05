@@ -32,29 +32,31 @@ def testheuristic(MAX_TIME_SECOND, MAX_PER_ITERATION, c, heuristic, args = None)
     return ans
 
 def plot_heuristics(c, heuristics):
-    for (heur, col, MAX_TIME_SECOND, MAX_PER_ITERATION, args) in heuristics:
+    fig, ax = plt.subplots()
+    for (heur, col, MAX_TIME_SECOND, MAX_PER_ITERATION, args, name) in heuristics:
         x = []
         y = []
         tab = testheuristic(MAX_TIME_SECOND, MAX_PER_ITERATION, c, heur, args)
         for (i, ys) in tab:
             x = x + (len(ys) * [i])
             y = y + ys
-        plt.scatter(x, y, c = col, marker = '.', label=col, alpha = 0.3)
+        ax.scatter(x, y, c = col, marker = '.', label=name, alpha = 0.3)
+    ax.legend()
 
 def main_plot():
     heuristics = []
-    heuristics.append((rls.heuristic, 'red', 1, 1, None))
-    heuristics.append((annealing.heuristic, 'blue', 1, 1, None))
-    heuristics.append((always_inside_mip.heuristic, 'orange', 30, 1, None))
-    heuristics.append((one_by_one.heuristic, 'green', 1, 1, None))
-    heuristics.append((optimal.heuristic, 'purple', 20, 1, None))
-    heuristics.append((greedy_best.heuristic, 'cyan', 30, 1, None))
-    heuristics.append((always_inside_backtracking.heuristic, 'pink', 30, 1, None))
-    heuristics.append((one_plus_one_ea.heuristic, 'brown', 1, 1, None))
-    #heuristics.append((mu_lambda_ea.heuristic, args=[5, 10, True]))
-    #heuristics.append((mu_lambda_ea.heuristic, args=[1, 6, False]))
-    #heuristics.append((mu_lambda_ga.heuristic, args=[2, 2, 0.5]))
-    heuristics.append((eda.heuristic, 'gray', 1, 1, None))
+    heuristics.append((rls.heuristic, 'red', 1, 1, None, 'RLS'))
+    heuristics.append((annealing.heuristic, 'blue', 1, 1, None, 'annealing'))
+    heuristics.append((always_inside_mip.heuristic, 'orange', 30, 1, None, 'MIP'))
+    heuristics.append((one_by_one.heuristic, 'green', 1, 1, None, 'One by one'))
+    heuristics.append((optimal.heuristic, 'purple', 10, 1, None, 'Optimal'))
+    heuristics.append((greedy_best.heuristic, 'cyan', 10, 1, None, 'Greedy best'))
+    heuristics.append((always_inside_backtracking.heuristic, 'pink', 10, 1, None, 'Backtracking'))
+    heuristics.append((one_plus_one_ea.heuristic, 'brown', 1, 1, None, '1+1 ea'))
+    heuristics.append((mu_lambda_ea.heuristic, 'black', 1, 1, [5, 10, True], 'mu+lambda ea'))
+    heuristics.append((mu_lambda_ea.heuristic, 'yellow', 1, 1, [1, 6, False], 'mu,lambda ea'))
+    heuristics.append((mu_lambda_ga.heuristic, 'orange', 1, 1, [2, 2, 0.5], 'mu+lambda ga'))
+    heuristics.append((eda.heuristic, 'gray', 1, 1, None, 'EDA'))
 
     plot_heuristics(2, heuristics)
     plt.savefig("test.png")
