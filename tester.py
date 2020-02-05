@@ -15,4 +15,4 @@ def tester(c, n, heuristic, args = None):
         heuristic(c, n, lambda x : score(x, solution, n, cnt), args)
     else:
         heuristic(c, n, lambda x : score(x, solution, n, cnt))
-    return cnt
+    return cnt[0]
