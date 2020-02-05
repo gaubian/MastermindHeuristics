@@ -1,5 +1,8 @@
 from random import *
 
+def with_proba(p):
+    return random() < p
+
 def dist(A, B):
     ans = 0
     for i in range(len(A)):
@@ -12,6 +15,15 @@ def random_mastermind(n):
 
 def random_color(n):
     return randint(0, n-1)
+
+def crossover(n, A, B):
+    C = []
+    for i in range(n):
+        if with_proba(0.5):
+            C.append(A[i])
+        else:
+            C.append(B[i])
+    return C
 
 def mutate(n, tab):
     new_tab = tab.copy()

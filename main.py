@@ -8,6 +8,7 @@ import greedy_best
 import always_inside_backtracking
 import one_plus_one_ea
 import mu_lambda_ea
+import mu_lambda_ga
 
 def main():
     print(tester.tester(10, rls.heuristic))
@@ -20,5 +21,6 @@ def main():
     print(tester.tester(10, one_plus_one_ea.heuristic))
     print(tester.tester(10, mu_lambda_ea.heuristic, args=[2, 2, True]))
     print(tester.tester(10, mu_lambda_ea.heuristic, args=[1, 6, False]))
+    print(tester.tester(10, mu_lambda_ga.heuristic, args=[2, 2, 0.5]))
 
 main()
