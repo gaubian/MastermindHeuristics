@@ -13,6 +13,13 @@ def random_mastermind(n):
 def random_color(n):
     return randint(0, n-1)
 
+def mutate(n, tab):
+    new_tab = tab.copy()
+    for i in range(n):
+        if randint(0, n-1) == 0:
+            new_tab[i] = random_color(n)
+    return new_tab
+
 def perturb_one_randomly(n, tab):
     new_tab = tab.copy()
     i = randint(0,n-1)

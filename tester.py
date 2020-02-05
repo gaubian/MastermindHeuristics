@@ -8,8 +8,11 @@ def score(A, B, n, nb_util_ref):
             ans += 1
     return ans
 
-def tester(n, heuristic):
+def tester(n, heuristic, args = None):
     solution = random_mastermind(n)
     cnt = [0]
-    heuristic(n, lambda x : score(x, solution, n, cnt))
+    if args:
+        heuristic(n, lambda x : score(x, solution, n, cnt), args)
+    else:
+        heuristic(n, lambda x : score(x, solution, n, cnt))
     return cnt
