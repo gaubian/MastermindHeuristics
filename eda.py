@@ -1,5 +1,15 @@
-from random import *
-from basics import *
+import random
+import basics
+
+def choices(x, weights = []):
+    s = sum(weights)
+    i = 0
+    while True:
+        if basics.with_proba(weights[i]/s):
+            return [x[i]]
+        else:
+            s -= weights[i]
+            i += 1
 
 def index_biased(tab, c, n):
     return choices(list(range(c)), weights = tab)[0]
@@ -20,6 +30,7 @@ def heuristic(c, n, score):
         if sc_x == n:
             break
         for i in range(n):
-            P[i][y[i]] /= 2
-            P[i][x[i]] += P[i][y[i]]
+            oldPiyi = P[i][y[i]]
+            P[i][y[i]] *= 1/c
+            P[i][x[i]] += oldPiyi - P[i][y[i]]
             
