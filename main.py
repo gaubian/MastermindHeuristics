@@ -205,8 +205,6 @@ def main_plot():
     heuristics.append((annealing.heuristic, 'blue', 1, 1, None, 'annealing', True))
     heuristics.append((always_inside_mip.heuristic, 'orange', 30, 1, None, 'MIP', True))
     heuristics.append((one_by_one.heuristic, 'green', 1, 1, None, 'One by one', True))
-    #heuristics.append((optimal.heuristic, 'purple', 10, 1, None, 'Optimal', True))
-    #heuristics.append((greedy_best.heuristic, 'cyan', 10, 1, None, 'Greedy best', True))
     heuristics.append((always_inside_backtracking.heuristic, 'pink', 30, 1, None, 'Backtracking', True))
     heuristics.append((one_plus_one_ea.heuristic, 'brown', 1, 1, None, '1+1 ea', True))
     heuristics.append((mu_lambda_ea.heuristic, 'black', 1, 1, [5, 10, True], 'mu+lambda ea', True))
@@ -216,19 +214,5 @@ def main_plot():
 
     plot_heuristics(lambda sz : 2, heuristics)
     plt.savefig("final_plot_one_max.png")
-
-def main():
-    print(tester.tester(2, 10, rls.heuristic))
-    print(tester.tester(2, 10, annealing.heuristic))
-    print(tester.tester(2, 10, always_inside_mip.heuristic))
-    print(tester.tester(2, 10, one_by_one.heuristic))
-    #print(tester.tester(3, 3, optimal.heuristic))
-    #print(tester.tester(3, 3, greedy_best.heuristic))
-    print(tester.tester(2, 10, always_inside_backtracking.heuristic))
-    print(tester.tester(2, 10, one_plus_one_ea.heuristic))
-    print(tester.tester(2, 10, mu_lambda_ea.heuristic, args=[5, 10, True]))
-    print(tester.tester(2, 10, mu_lambda_ea.heuristic, args=[1, 6, False]))
-    print(tester.tester(2, 10, mu_lambda_ga.heuristic, args=[2, 2, 0.5]))
-    print(tester.tester(2, 10, eda.heuristic))
 
 main_plot()
